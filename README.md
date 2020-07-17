@@ -12,7 +12,7 @@ The following tasks need to be completed in the app:
 1. Implement a simple show page showing all the information received about each book
 1. Implement a contact form with two fields: email and message. After submitting the form the values inserted by the user should be shown. No emails should be sent. 
 
-There are some conceptual errors in this app. Can you find them?s
+There are some conceptual errors in this app. Can you find them?
 
 ### How to run
 
