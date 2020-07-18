@@ -9,7 +9,7 @@ class Book
   attr_accessor :id, :title, :isbn, :coverUrl, :description
 
   def initialize(attributes = {})
-    attributes.each do |name, value|
+      attributes.each do |name, value|
       send("#{name}=", value)
     end
   end
@@ -40,7 +40,19 @@ class Book
     Book.new(info['data'])
   end
 
-  base_uri 'http://localhost'
+  def self.search(title)
+    info = get("/books?title=#{title}")
+    return unless info.success?
+
+    info = info.parsed_response
+    books = []
+    info['data'].each do |b|
+      books << Book.new(b)
+    end
+    books
+  end
+
+  base_uri 'http://localhost:8080'
   headers 'Accept' => 'application/json'
   headers 'Content-Type' => 'application/json'
   format :json

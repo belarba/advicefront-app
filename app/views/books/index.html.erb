@@ -1,10 +1,10 @@
 
 <div class="row my-2">
   <div class="col">
-    <form class="form-inline" action="<%= books_path %>">
+    <form class="form-inline" action="<%= books_path %>" method="get">
       <div class="form-group mb-2">
         <label for="book-title" class="sr-only">Book title</label>
-        <input type="text" readonly class="form-control" id="book-title" placeholder="Book title">
+        <input type="text" name="title" class="form-control" id="book-title" placeholder="Book title">
       </div>
       <button type="submit" class="btn btn-primary mb-2">Search</button>
     </form>
@@ -15,18 +15,19 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Title</th>
+      <th scope="col" style="width: 25%;" class="text-center">Cover</th>
+      <th scope="col" style="width: 75%;">Title</th>
     </tr>
   </thead>
   <tbody>
   <% @books.each do |book| %>
     <tr>
-      <th scope="row">
-        <!--<img src="<%= book.coverUrl %>" class="figure-img img-fluid rounded" >-->
-        <%= book.id %>
+      <th scope="row" class="text-center">
+        <a href="<%= book_path(book.id) %>">
+          <img src="<%= book.coverUrl %>" class="cover img-thumbnail shadow-sm" >
+        </a>
       </th>
-      <td>
+      <td class="align-middle">
         <a href="<%= book_path(book.id) %>">
           <%= book.title %>
         </a>
