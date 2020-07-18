@@ -4,7 +4,15 @@
 class BooksController < ApplicationController
 # GET /books
 def index
-@books = Book.all
+  if params[:title].present?
+    @books = Book.search(params[:title])
+  else
+    @books = Book.all
+  end
+end
+
+def show
+  @book = Book.find(params[:id])
 end
 
 def contact_us; end
